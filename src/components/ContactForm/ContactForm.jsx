@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { Box, Form, Input, Label, Button, H2 } from './ContactForm.styled';
+import { Box, Form, Input, Label, Button, H2, Select, FormItem } from './ContactForm.styled';
 import { H1 } from '../App.styled';
 
 export default function ContactForm({ onSubmit }) {
@@ -81,19 +81,28 @@ export default function ContactForm({ onSubmit }) {
       <h1>Apartments Marketplace</h1>
       <H2>🤑 Create a new rent</H2>
       <Form onSubmit={clickSubmit}>
-        <label>Title</label>
-        <input onChange={onChange} type="text" name="name" placeholder='Ex. Flat in the city center'/>
-        <label>Days</label>
-        <input onChange={onChange} type="number" name="days" placeholder='4'/>
-        <label htmlFor="cars">Beds</label>
-        <select onChange={onChange} id="cars" name="beds">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3+">3+</option>
-        </select>
-        <label>Rent Price</label>
-        <input onChange={onChange} type="number" name="price" placeholder='99.00'/>
-        <Button type="submit">Submit rent</Button>
+        <FormItem role='group'>
+          <Label htmlFor='name'>Title</Label>
+          <Input onChange={onChange} type="text" name="name" placeholder='Ex. Flat in the city center'/>
+        </FormItem>
+        <FormItem role='group'>
+          <Label htmlFor='days'>Days</Label>
+          <Input onChange={onChange} type="number" name="days" placeholder='4'/>
+        </FormItem>
+        <FormItem role='group'>
+          <Label htmlFor='beds' htmlFor="cars">Beds</Label>
+          <Select  onChange={onChange} id="beds" name="beds">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3+">3+</option>
+          </Select>
+        </FormItem>
+        <FormItem role='group'>
+          <Label htmlFor='price'>Rent Price</Label>
+          <Input onChange={onChange} type="number" name="price" placeholder='99.00'/>
+        </FormItem>
+   <Button type="submit">Submit rent</Button>
+
       </Form>
     </Box>
   );

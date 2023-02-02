@@ -4,7 +4,7 @@ export const Box = styled.ul`
   margin-top: 15px;
   padding: 0px;
 
-  width: 800px;
+  width: 100%;
 
   //background-color: aliceblue;
 
@@ -18,7 +18,7 @@ export const Item = styled.li`
   }
   padding: 15px 15px 15px 20px;
 
-  width: 765px;
+  //width: 765px;
 
   display: flex;
   flex-direction: row;
@@ -41,13 +41,20 @@ export const Button = styled.button`
 
 
 
+  padding: 10px;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   border: none;
+  background-color: #00be97;
+  color: #fff;
+  font-weight: 600;
   border-radius: 5px;
 
-  padding: 10px 20px;
-min-width: 100px;
-  color: #fff;
-  background-color: #ff0034;
   cursor: pointer;
+  min-width: 100px;
+  height: 40px;
 `;
 
