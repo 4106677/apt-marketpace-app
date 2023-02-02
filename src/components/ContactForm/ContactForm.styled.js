@@ -42,3 +42,10 @@ export const Button = styled.button`
   cursor: pointer;
   width: 100%;
 `;
+
+export const H2 = styled.h2`
+  text-align: left;
+  justify-content: left;
+  display: flex;
+  margin-left: 0;
+`

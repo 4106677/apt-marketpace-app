@@ -20,6 +20,20 @@ export function App() {
       ]
     );
   });
+
+
+  const [apt, setApt] = useState(()=> {
+    return (
+      JSON.parse(
+        localStorage.getItem('apt')
+      ) ?? [
+        {id: '100', name: 'Market square apertments', beds: '1', days: '2', price: '110'},
+        {id: '101', name: 'Sun Hotel', beds: '1', days: '1', price: '100'},
+        {id: '102', name: 'Cozy Room', beds: '1', days: '1', price: '20'},
+      ]
+    )
+  });
+
   const [filter, setFilter] = useState('');
 
   const deleteContact = contactId => {
@@ -54,18 +68,20 @@ export function App() {
     );
   };
 
+  const getApts = () => {
+    return apt.filter(({ name }) => name.toLowerCase().includes(filter.toLowerCase()))
+  }
+
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
   return (
     <Section>
-      <H1>Phonebook</H1>
-      <ContactForm onSubmit={addContact} />
 
-      <h2>Contacts</h2>
-      <Filter value={filter} onChange={changeFilter} />
-      <ContactList contacts={getFilteredContacts()} onDelete={deleteContact} />
+      <ContactForm onSubmit={addContact} />
+          <Filter value={filter} onChange={changeFilter} />
+      <ContactList contacts={getFilteredContacts()} onDelete={deleteContact} apts={getApts()}/>
       <GlobalStyle />
     </Section>
   );

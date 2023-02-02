@@ -1,17 +1,30 @@
-import { Box, Contact, Button } from './ContactList.styled';
+import { Box, Item, Button } from './ContactList.styled';
 
 import PropTypes from 'prop-types';
 
-export const ContactList = ({ contacts, onDelete }) => {
+export const ContactList = ({ contacts, onDelete, apts }) => {
+  console.log(Object.keys(apts).length);
   return (
     <Box>
-      {contacts.map(({ id, name, number }) => (
-        <Contact key={id}>
-          {name}: {number}
-          <Button type="button" onClick={() => onDelete(id)}>
-            X
-          </Button>
-        </Contact>
+      {/*{contacts.map(({ id, name, number }) => (*/}
+      {/*  <Contact key={id}>*/}
+      {/*    {name}: {number}*/}
+      {/*    <Button type="button" onClick={() => onDelete(id)}>*/}
+      {/*      X*/}
+      {/*    </Button>*/}
+      {/*  </Contact>*/}
+      {/*))}*/}
+
+      <h2>🏠 Avaliable Apartments ({Object.keys(apts).length})</h2>
+      <h2>🤩 You current rent</h2>
+
+
+      {apts.map(({ id, name, beds, days, price }) => (
+        <Item key={id}>
+          {name}/ {beds} bed{beds > 1 && 's'}/ {days} day{days > 1 && 's'}/ ${price * days}
+          <Button type='button'>Rent</Button>
+          <Button type='button'>Delete</Button>
+        </Item>
       ))}
     </Box>
   );
