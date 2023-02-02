@@ -34,6 +34,20 @@ export function App() {
     )
   });
 
+  const [rentApts, setRentApts] = useState(
+    ()=> {
+      return (
+        JSON.parse(
+          localStorage.getItem('rentApts')
+        ) ?? [
+          {id: '100', name: 'Market square apertments', beds: '1', days: '2', price: '110'},
+        ]
+      )
+    }
+  );
+
+  console.log(rentApts);
+
   const [filter, setFilter] = useState('');
 
   const deleteContact = contactId => {
@@ -81,7 +95,7 @@ export function App() {
 
       <ContactForm onSubmit={addContact} />
           <Filter value={filter} onChange={changeFilter} />
-      <ContactList contacts={getFilteredContacts()} onDelete={deleteContact} apts={getApts()}/>
+      <ContactList contacts={getFilteredContacts()} onDelete={deleteContact} apts={getApts()} rentApts={rentApts}/>
       <GlobalStyle />
     </Section>
   );

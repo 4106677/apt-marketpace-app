@@ -1,12 +1,19 @@
 import styled from 'styled-components';
 
+export const Box = styled.div`
+align-items: flex-start;
+  width: 100%;
+`
 export const Form = styled.form`
-  border-radius: 20px;
+  border-radius: 5px;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
-  width: 100%;
+  //width: 100%;
+  background-color: #e8eaed;
+
+  padding:  20px;
 `;
 
 export const Label = styled.label`
@@ -17,10 +24,11 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   display: block;
-  width: 382px%;
-  margin: 10px 0;
+  width: 382px;
+  margin: 10px ;
   padding: 10px;
   padding-top: 20px;
+
 
   border-radius: 10px;
   border: 1px solid #eee;
@@ -28,19 +36,25 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  appearance: none;
-  -webkit-appearance: none;
+  display: flex;
+  flex-direction: row;
+
+  //appearance: none;
+  //-webkit-appearance: none;
   /* usual styles */
   padding: 10px;
 
   border: none;
-  background-color: #3f51b5;
+  background-color: #00be97;
   color: #fff;
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: 5px;
 
   cursor: pointer;
-  width: 100%;
+  min-width: 100px;
+
+  
+  //width: 100%;
 `;
 
 export const H2 = styled.h2`
@@ -48,4 +62,5 @@ export const H2 = styled.h2`
   justify-content: left;
   display: flex;
   margin-left: 0;
+  align-items: flex-start;
 `

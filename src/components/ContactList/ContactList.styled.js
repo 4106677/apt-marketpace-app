@@ -29,6 +29,8 @@ export const Item = styled.li`
   border: 1px solid #d7d9dc;
 `;
 
+
+
 export const Button = styled.button`
   :first-child{
     margin-left: auto;
@@ -43,7 +45,7 @@ export const Button = styled.button`
   border-radius: 5px;
 
   padding: 10px 20px;
-width: 100px;
+min-width: 100px;
   color: #fff;
   background-color: #ff0034;
   cursor: pointer;

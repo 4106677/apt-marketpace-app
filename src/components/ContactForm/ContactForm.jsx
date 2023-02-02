@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { Form, Input, Label, Button, H2 } from './ContactForm.styled';
+import { Box, Form, Input, Label, Button, H2 } from './ContactForm.styled';
 import { H1 } from '../App.styled';
 
 export default function ContactForm({ onSubmit }) {
@@ -56,7 +56,7 @@ export default function ContactForm({ onSubmit }) {
   };
 
   return (
-    <>
+    <Box>
       {/*<Form onSubmit={handleSubmit}>*/}
       {/*  <Label>Name</Label>*/}
       {/*  <Input*/}
@@ -95,7 +95,7 @@ export default function ContactForm({ onSubmit }) {
         <input onChange={onChange} type="number" name="price" placeholder='99.00'/>
         <Button type="submit">Submit rent</Button>
       </Form>
-    </>
+    </Box>
   );
 }
 
