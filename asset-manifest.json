@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/apt-marketpace-app/static/js/main.2c8e536e.js",
+    "index.html": "/apt-marketpace-app/index.html",
+    "main.2c8e536e.js.map": "/apt-marketpace-app/static/js/main.2c8e536e.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.2c8e536e.js"
+  ]
+}
