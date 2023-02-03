@@ -2,8 +2,8 @@ import { Available, Box, Btns, Button, Desc, Item, SortBox } from './AptList.sty
 import { Select } from '../AddForm/AddForm.styled';
 
 
-export const AptList = ({ onRent, onDelete, onCancel, apts, setApt, sortDir, rentApts, setSortDir }) => {
-  
+export const AptList = ({ onRent, onDelete, onCancel, apts, rentApts, setSortDir }) => {
+
   const onSorted = e => {
     e.preventDefault();
     setSortDir(e.currentTarget.elements.sort.value);
@@ -28,7 +28,6 @@ export const AptList = ({ onRent, onDelete, onCancel, apts, setApt, sortDir, ren
         <SortBox>
           <p>Sort to</p>
           <form onChange={onSorted}>
-
             <Select name='sort' required>
               <option value='highest'>Price: Highest First</option>
               <option value='lowest'>Price: Lowest First</option>

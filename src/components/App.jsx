@@ -61,16 +61,6 @@ export function App() {
     }
   };
 
-  const updateList = () => {
-    if (sortDir === 'highest') {
-
-      setApt([...apt].sort((a, b) => b.price * b.days - a.price * a.days));
-
-    } else {
-      setApt([...apt].sort((a, b) => a.price * a.days - b.price * b.days));
-    }
-  };
-
   const newRent = ({ name, beds, days, price }) => {
     const newApt = {
       id: nanoid(4),
@@ -80,9 +70,14 @@ export function App() {
       price,
     };
     setApt([newApt, ...apt]);
-    // setSortDir(sortDir);
+  };
 
-    // updateList();
+  const getSortedApt = () => {
+    if (sortDir === 'highest') {
+      return [...apt].sort((a, b) => b.price * b.days - a.price * a.days);
+    } else {
+      return [...apt].sort((a, b) => a.price * a.days - b.price * b.days);
+    }
   };
 
 
@@ -91,18 +86,11 @@ export function App() {
     window.localStorage.setItem('rentApts', JSON.stringify(rentApts));
   }, [apt, rentApts]);
 
-  useEffect(() => {
-    updateList();
-  }, [sortDir]);
-
 
   return (
     <Section>
-
       <AddForm onSubmit={newRent} />
-
-      <AptList onRent={addRent} onDelete={deleteApt} onCancel={cancelRent} apts={apt} setSortDir={setSortDir}
-               setApt={setApt}
+      <AptList onRent={addRent} onDelete={deleteApt} onCancel={cancelRent} apts={getSortedApt()} setSortDir={setSortDir}
                rentApts={rentApts} />
       <GlobalStyle />
     </Section>
