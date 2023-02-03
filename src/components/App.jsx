@@ -1,27 +1,15 @@
 import { useState, useEffect } from 'react';
-import ContactForm from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import Filter from './Filter/Filter';
+import AddForm from './AddForm/AddForm';
+import { AptList } from './AptList/AptList';
+
 import { GlobalStyle } from './GlobalStyles';
 
 import { nanoid } from 'nanoid';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 
-import { Section, H1 } from './App.styled';
+import { Section } from './App.styled';
 
 export function App() {
-  const [contacts, setContacts] = useState(() => {
-    return (
-      JSON.parse(localStorage.getItem('contacts')) ?? [
-        { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-        { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-        { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-        { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-      ]
-    );
-  });
-
-
   const [apt, setApt] = useState(()=> {
     return (
       JSON.parse(
@@ -40,62 +28,65 @@ export function App() {
         JSON.parse(
           localStorage.getItem('rentApts')
         ) ?? [
-          {id: '100', name: 'Market square apertments', beds: '1', days: '2', price: '110'},
+          {id: '101', name: 'Sun Hotel', beds: '1', days: '1', price: '100'},
         ]
       )
     }
   );
-
-  console.log(rentApts);
-
-  const [filter, setFilter] = useState('');
-
-  const deleteContact = contactId => {
-    setContacts(contacts.filter(contact => contact.id !== contactId));
+  const deleteApt = aptId => {
+    setApt(apt.filter(item => item.id !== aptId));
   };
 
-  const addContact = ({ name, number }) => {
-    const contact = {
-      id: nanoid(),
+  const cancelRent = aptId => {
+    console.log('cancel');
+    setRentApts(rentApts.filter(item => item.id !== aptId));
+  };
+
+  const addRent = ({id, name, beds, days, price}) => {
+    const rentApt = {
+      id,
       name,
-      number,
-    };
-
-    if (
-      contacts.find(
-        contact => contact.name.toLowerCase() === name.toLowerCase()
-      )
-    ) {
-      Report.info(name, ' is already in contacts.', 'Okay');
-    } else {
-      setContacts([contact, ...contacts]);
+      beds,
+      days,
+      price,
     }
-  };
 
-  const changeFilter = e => {
-    setFilter(e.currentTarget.value);
-  };
-
-  const getFilteredContacts = () => {
-    return contacts.filter(({ name }) =>
-      name.toLowerCase().includes(filter.toLowerCase())
-    );
-  };
-
-  const getApts = () => {
-    return apt.filter(({ name }) => name.toLowerCase().includes(filter.toLowerCase()))
+    if (rentApts.find(apt => apt.id === id)) {
+      Report.info(name, 'is already rent', 'Okay')
+    } else {
+      setRentApts([rentApt, ...rentApts]);
+    }
   }
 
+  const newRent = ({name, beds, days, price}) => {
+    const newApt = {
+      id: nanoid(4),
+      name,
+      beds,
+      days,
+      price,
+    }
+    setApt([newApt, ...apt]);
+  }
+
+
+
+
+
+
+
+
   useEffect(() => {
-    window.localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+    window.localStorage.setItem('apt', JSON.stringify(apt));
+    window.localStorage.setItem('rentApts', JSON.stringify(rentApts));
+  }, [apt, rentApts]);
 
   return (
     <Section>
 
-      <ContactForm onSubmit={addContact} />
-          <Filter value={filter} onChange={changeFilter} />
-      <ContactList contacts={getFilteredContacts()} onDelete={deleteContact} apts={getApts()} rentApts={rentApts}/>
+      <AddForm onSubmit={newRent} />
+
+      <AptList onRent={addRent} onDelete={deleteApt} onCancel={cancelRent} apts={apt} rentApts={rentApts}/>
       <GlobalStyle />
     </Section>
   );
