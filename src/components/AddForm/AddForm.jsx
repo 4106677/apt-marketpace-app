@@ -31,7 +31,7 @@ export default function AddForm({ onSubmit }) {
           <Input type='number' name='days' placeholder='4' min='1' required />
         </FormItem>
         <FormItem>
-          <Label htmlFor='beds' htmlFor='cars'>Beds</Label>
+          <Label htmlFor='beds'>Beds</Label>
           <Select id='beds' name='beds' required form='form' placeholder='1'>
             <option value='1'>1</option>
             <option value='2'>2</option>
