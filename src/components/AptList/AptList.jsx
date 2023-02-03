@@ -1,6 +1,13 @@
-import { Box, Btns, Button, Desc, Item } from './AptList.styled';
+import { Available, Box, Btns, Button, Desc, Item, SortBox } from './AptList.styled';
+import { Select } from '../AddForm/AddForm.styled';
 
-export const AptList = ({ onRent, onDelete, onCancel, apts, rentApts }) => {
+
+export const AptList = ({ onRent, onDelete, onCancel, apts, setApt, sortDir, rentApts, setSortDir }) => {
+  
+  const onSorted = e => {
+    e.preventDefault();
+    setSortDir(e.currentTarget.elements.sort.value);
+  };
 
   return (
     <Box>
@@ -14,7 +21,21 @@ export const AptList = ({ onRent, onDelete, onCancel, apts, rentApts }) => {
       ))}
 
 
-      <h2>🏠 Available Apartments ({Object.keys(apts).length})</h2>
+      <Available>
+        <p>
+          🏠 Available Apartments ({Object.keys(apts).length})
+        </p>
+        <SortBox>
+          <p>Sort to</p>
+          <form onChange={onSorted}>
+
+            <Select name='sort' required>
+              <option value='highest'>Price: Highest First</option>
+              <option value='lowest'>Price: Lowest First</option>
+            </Select>
+          </form>
+        </SortBox>
+      </Available>
       {apts.map(({ id, name, beds, days, price }) => (
         <Item key={id}>
           <Desc>    {name}/ {beds} bed{beds > 1 && 's'}/ {days} day{days > 1 && 's'}/ ${price * days}</Desc>

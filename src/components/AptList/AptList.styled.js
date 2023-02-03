@@ -11,6 +11,7 @@ export const Box = styled.ul`
   border-radius: 10px;
 `;
 
+
 export const Item = styled.li`
   &:not(:first-child) {
     //border-top: 1px solid gray;
@@ -31,6 +32,23 @@ export const Item = styled.li`
 
   min-height: 40px;
 
+`;
+
+export const SortBox = styled.div`
+  margin-left: auto;
+
+  display: flex;
+
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const Available = styled.h2`
+  p {
+    padding: 0 10px
+  }
+
+  display: flex;
 `;
 
 export const Desc = styled.div`

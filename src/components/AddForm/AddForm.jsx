@@ -1,7 +1,7 @@
 import { Box, Button, Form, FormItem, H2, Input, Label, Select } from './AddForm.styled';
 
 
-export default function AddForm({ onSubmit }) {
+export default function AddForm({ onSubmit, updateList }) {
 
   const clickSubmit = (e) => {
     e.preventDefault();
@@ -14,6 +14,7 @@ export default function AddForm({ onSubmit }) {
 
     onSubmit({ name, days, beds, price });
     form.reset();
+
   };
 
   return (

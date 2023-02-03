@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AddForm from './AddForm/AddForm';
 import { AptList } from './AptList/AptList';
 
@@ -10,70 +10,80 @@ import { Report } from 'notiflix/build/notiflix-report-aio';
 import { Section } from './App.styled';
 
 export function App() {
-  const [apt, setApt] = useState(()=> {
+  const [apt, setApt] = useState(() => {
     return (
       JSON.parse(
-        localStorage.getItem('apt')
+        localStorage.getItem('apt'),
       ) ?? [
-        {id: '100', name: 'Market square apertments', beds: '1', days: '2', price: '110'},
-        {id: '101', name: 'Sun Hotel', beds: '1', days: '1', price: '100'},
-        {id: '102', name: 'Cozy Room', beds: '1', days: '1', price: '20'},
+        { id: '100', name: 'Market square apertments', beds: '1', days: '2', price: '110' },
+        { id: '101', name: 'Sun Hotel', beds: '1', days: '1', price: '100' },
+        { id: '102', name: 'Cozy Room', beds: '1', days: '1', price: '200' },
       ]
-    )
+    );
   });
 
   const [rentApts, setRentApts] = useState(
-    ()=> {
+    () => {
       return (
         JSON.parse(
-          localStorage.getItem('rentApts')
+          localStorage.getItem('rentApts'),
         ) ?? [
-          {id: '101', name: 'Sun Hotel', beds: '1', days: '1', price: '100'},
+          { id: '101', name: 'Sun Hotel', beds: '1', days: '1', price: '100' },
         ]
-      )
-    }
+      );
+    },
   );
+
+  const [sortDir, setSortDir] = useState('highest');
   const deleteApt = aptId => {
     setApt(apt.filter(item => item.id !== aptId));
   };
 
+
   const cancelRent = aptId => {
-    console.log('cancel');
     setRentApts(rentApts.filter(item => item.id !== aptId));
   };
 
-  const addRent = ({id, name, beds, days, price}) => {
+  const addRent = ({ id, name, beds, days, price }) => {
     const rentApt = {
       id,
       name,
       beds,
       days,
       price,
-    }
+    };
 
     if (rentApts.find(apt => apt.id === id)) {
-      Report.info(name, 'is already rent', 'Okay')
+      Report.info(name, 'is already rent', 'Okay');
     } else {
       setRentApts([rentApt, ...rentApts]);
-    }
-  }
 
-  const newRent = ({name, beds, days, price}) => {
+    }
+  };
+
+  const updateList = () => {
+    if (sortDir === 'highest') {
+
+      setApt([...apt].sort((a, b) => b.price * b.days - a.price * a.days));
+
+    } else {
+      setApt([...apt].sort((a, b) => a.price * a.days - b.price * b.days));
+    }
+  };
+
+  const newRent = ({ name, beds, days, price }) => {
     const newApt = {
       id: nanoid(4),
       name,
       beds,
       days,
       price,
-    }
+    };
     setApt([newApt, ...apt]);
-  }
+    // setSortDir(sortDir);
 
-
-
-
-
-
+    // updateList();
+  };
 
 
   useEffect(() => {
@@ -81,12 +91,19 @@ export function App() {
     window.localStorage.setItem('rentApts', JSON.stringify(rentApts));
   }, [apt, rentApts]);
 
+  useEffect(() => {
+    updateList();
+  }, [sortDir]);
+
+
   return (
     <Section>
 
       <AddForm onSubmit={newRent} />
 
-      <AptList onRent={addRent} onDelete={deleteApt} onCancel={cancelRent} apts={apt} rentApts={rentApts}/>
+      <AptList onRent={addRent} onDelete={deleteApt} onCancel={cancelRent} apts={apt} setSortDir={setSortDir}
+               setApt={setApt}
+               rentApts={rentApts} />
       <GlobalStyle />
     </Section>
   );
