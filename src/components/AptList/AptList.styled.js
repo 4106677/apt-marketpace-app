@@ -3,10 +3,7 @@ import styled from 'styled-components';
 export const Box = styled.ul`
   margin-top: 15px;
   padding: 0;
-
   width: 100%;
-
-  //background-color: aliceblue;
 
   border-radius: 10px;
 `;
@@ -14,13 +11,11 @@ export const Box = styled.ul`
 
 export const Item = styled.li`
   &:not(:first-child) {
-    //border-top: 1px solid gray;
     margin-top: 10px;
   }
 
   padding: 15px 15px 15px 20px;
 
-  //width: 765px;
 
   display: flex;
   flex-direction: row;

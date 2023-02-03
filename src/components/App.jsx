@@ -17,7 +17,7 @@ export function App() {
       ) ?? [
         { id: '100', name: 'Market square apertments', beds: '1', days: '2', price: '110' },
         { id: '101', name: 'Sun Hotel', beds: '1', days: '1', price: '100' },
-        { id: '102', name: 'Cozy Room', beds: '1', days: '1', price: '200' },
+        { id: '102', name: 'Cozy Room', beds: '1', days: '1', price: '20' },
       ]
     );
   });

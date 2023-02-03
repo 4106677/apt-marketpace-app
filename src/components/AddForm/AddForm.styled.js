@@ -2,10 +2,12 @@ import styled from 'styled-components';
 
 export const Box = styled.div`
 
+
   width: 100%;
-`
+`;
 export const Form = styled.form`
   border-radius: 5px;
+  border: 1px solid #d5d7db;
 
   display: flex;
   flex-direction: row;
@@ -16,23 +18,25 @@ export const Form = styled.form`
   height: 100px;
   background-color: #e8eaed;
 
-  padding:  20px;
+  padding: 20px;
 `;
 
 export const FormItem = styled.div`
-  :first-child{
+  :first-child {
     width: 250px;
   }
-:last-child{
-  width: 80px;
-}
-    width: 110px;
+
+  :last-child {
+    width: 80px;
+  }
+
+  width: 110px;
   margin-right: 20px;
-`
+`;
 export const Label = styled.label`
   display: block;
-  //transform: translate(-30px, 14px) scale(0.75);
-margin-bottom: 5px;
+
+  margin-bottom: 5px;
 
   font-size: 14px;
 
@@ -44,10 +48,10 @@ export const Input = styled.input`
   height: 40px;
 
   padding: 10px;
-  //padding-top: 20px;
 
   border-radius: 5px;
-  border: 1px solid #eee;
+  border: 1px solid #d5d7db;
+
   transition: 0.3s border-color;
 `;
 
@@ -80,7 +84,7 @@ export const Button = styled.button`
 
   cursor: pointer;
   min-width: 100px;
-height: 40px;
+  height: 40px;
 
 `;
 
@@ -90,4 +94,4 @@ export const H2 = styled.h2`
   display: flex;
   margin-left: 0;
   align-items: flex-start;
-`
+`;
